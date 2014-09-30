@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+
 public class Leitor {
 
 	public static void main(String[] args) {
@@ -19,18 +20,17 @@ public class Leitor {
 			InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 			br = new BufferedReader(isr);
 			String textoDoArquivo = br.readLine();
-
+			int cont=0;
+			HTMLSource html = new HTMLSource();
+			textoDoArquivo = br.readLine();
 			while (textoDoArquivo != null) {
-				textoDoArquivo = br.readLine();
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(",");
-				System.out.println(textoDoArquivoSeparado[24] + " "
-						+ textoDoArquivoSeparado[25] + " / "
-						+ textoDoArquivoSeparado[22] + ": "
-						+ textoDoArquivoSeparado[23]);
-
+				html.setarValores(new Integer(cont), textoDoArquivoSeparado[28], textoDoArquivoSeparado[26]);
+				cont++;
 				textoDoArquivo = br.readLine();
 			}
-
+			System.out.println(html.geraHTML());
+			System.out.println("Total: " + cont);
 		} catch (FileNotFoundException e) {
 			System.out.println("Não foi possível encontrar o arquivo.");
 			e.printStackTrace();
