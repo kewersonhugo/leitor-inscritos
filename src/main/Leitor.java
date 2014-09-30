@@ -37,7 +37,11 @@ public class Leitor {
 			}
 
 			OutputStream os = new FileOutputStream("inscritos.html", false);
+<<<<<<< HEAD
 			OutputStreamWriter osw = new OutputStreamWriter(os,"ISO-8859-1");
+=======
+			OutputStreamWriter osw = new OutputStreamWriter(os,"UTF-8");
+>>>>>>> 64a427ef07450f1432e7752a0d88cf129e6ec1e8
 			BufferedWriter bw = new BufferedWriter(osw);
 			bw.newLine();
 			bw.write(html.geraHTML());

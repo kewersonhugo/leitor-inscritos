@@ -5,7 +5,11 @@ public class HTMLSource {
 	private StringBuilder stringsHTML = new StringBuilder();
 	
 	public HTMLSource(){
+<<<<<<< HEAD
 		stringsHTML.append("<table>").append("<tr><td>NÃºmero</td><td>Nome</td><td>Blusa</td></tr>");
+=======
+		stringsHTML.append("<table>").append("<tr><td>Nœmero</td><td>Nome</td><td>Blusa</td></tr>");
+>>>>>>> 64a427ef07450f1432e7752a0d88cf129e6ec1e8
 	}
 	
 	public void setarValores(Integer numero, String nome, String tamanhoBlusa){
