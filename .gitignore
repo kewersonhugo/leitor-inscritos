@@ -1,5 +1,7 @@
-build/classes/*.*
+build/classes/
 build/classes/main/*.class
+build/classes/main/HTMLSource.class
+build/classes/main/Leitor.class
 .classpath
 /.classpath
 .project

@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 
 public class Leitor {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
 		BufferedReader br = null;
 
@@ -30,9 +30,14 @@ public class Leitor {
 			
 			while (textoDoArquivo != null) {
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(",");
+				String tamanho = textoDoArquivoSeparado[26].replace("\"", "");
+				
+				Class classe = Class.forName("main.Blusa"+tamanho);
+				Object o = classe.newInstance();
+				Blusa blusa = (Blusa) o;
+				
 				html.setarValores(new Integer(cont),
-						textoDoArquivoSeparado[28].replace("\"", ""), textoDoArquivoSeparado[26].replace("\"", ""));
-				html.somaBlusas();
+						textoDoArquivoSeparado[28].replace("\"", ""), blusa);
 				cont++;
 				textoDoArquivo = br.readLine();
 			}
