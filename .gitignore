@@ -1,3 +1,5 @@
+build/classes/*.*
+build/classes/main/*.class
 .classpath
 /.classpath
 .project
