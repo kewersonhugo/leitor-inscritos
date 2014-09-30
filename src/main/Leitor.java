@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Scanner;
+import java.nio.charset.Charset;
 
 public class Leitor {
 
@@ -21,7 +21,7 @@ public class Leitor {
 
 		try {
 			InputStream is = new FileInputStream("inscritos.csv");
-			InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+			InputStreamReader isr = new InputStreamReader(is, Charset.forName("ISO-8859-15"));
 			br = new BufferedReader(isr);
 			String textoDoArquivo = br.readLine();
 			int cont = 0;
@@ -31,21 +31,18 @@ public class Leitor {
 			while (textoDoArquivo != null) {
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(",");
 				html.setarValores(new Integer(cont),
-						textoDoArquivoSeparado[28], textoDoArquivoSeparado[26]);
+						textoDoArquivoSeparado[28].replace("\"", ""), textoDoArquivoSeparado[26].replace("\"", ""));
+				html.somaBlusas();
 				cont++;
 				textoDoArquivo = br.readLine();
 			}
 
 			OutputStream os = new FileOutputStream("inscritos.html", false);
-<<<<<<< HEAD
-			OutputStreamWriter osw = new OutputStreamWriter(os,"ISO-8859-1");
-=======
-			OutputStreamWriter osw = new OutputStreamWriter(os,"UTF-8");
->>>>>>> 64a427ef07450f1432e7752a0d88cf129e6ec1e8
+			OutputStreamWriter osw = new OutputStreamWriter(os,Charset.forName("ISO-8859-15"));
 			BufferedWriter bw = new BufferedWriter(osw);
 			bw.newLine();
 			bw.write(html.geraHTML());
-			bw.write("Total: " + cont);
+			bw.write(html.totalBlusas());
 			bw.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Não foi possível encontrar o arquivo.");
