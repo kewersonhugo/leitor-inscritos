@@ -21,7 +21,7 @@ public class Leitor {
 
 		try {
 			InputStream is = new FileInputStream("inscritos.csv");
-			InputStreamReader isr = new InputStreamReader(is, Charset.forName("ISO-8859-15"));
+			InputStreamReader isr = new InputStreamReader(is, Charset.forName("UTF-8"));
 			br = new BufferedReader(isr);
 			String textoDoArquivo = br.readLine();
 			int cont = 0;
@@ -31,14 +31,15 @@ public class Leitor {
 			while (textoDoArquivo != null) {
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(",");
 				String tamanho = textoDoArquivoSeparado[26].replace("\"", "");
-				
-				Class classe = Class.forName("main.Blusa"+tamanho);
-				Object o = classe.newInstance();
-				Blusa blusa = (Blusa) o;
-				
-				html.setarValores(new Integer(cont),
-						textoDoArquivoSeparado[28].replace("\"", ""), blusa);
-				cont++;
+				if(tamanho != null && !tamanho.isEmpty()){
+					Class classe = Class.forName("main.Blusa"+tamanho);
+					Object o = classe.newInstance();
+					Blusa blusa = (Blusa) o;
+					
+					html.setarValores(new Integer(cont),
+							textoDoArquivoSeparado[28].replace("\"", ""), blusa);
+					cont++;
+				}
 				textoDoArquivo = br.readLine();
 			}
 
