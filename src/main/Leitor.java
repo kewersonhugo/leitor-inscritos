@@ -27,17 +27,12 @@ public class Leitor {
 			int cont = 0;
 			HTMLSource html = new HTMLSource();
 			textoDoArquivo = br.readLine();
-			
+			//04,11,22
 			while (textoDoArquivo != null) {
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(",");
 				String tamanho = textoDoArquivoSeparado[26].replace("\"", "");
 				if(tamanho != null && !tamanho.isEmpty()){
-					Class classe = Class.forName("main.Blusa"+tamanho);
-					Object o = classe.newInstance();
-					Blusa blusa = (Blusa) o;
-					
-					html.setarValores(new Integer(cont),
-							textoDoArquivoSeparado[28].replace("\"", ""), blusa);
+					html.gerarDados(new Integer(cont), textoDoArquivoSeparado);
 					cont++;
 				}
 				textoDoArquivo = br.readLine();
@@ -49,6 +44,15 @@ public class Leitor {
 			bw.newLine();
 			bw.write(html.geraHTML());
 			bw.write(html.totalBlusas());
+			
+			System.out.println(html.totalBlusas());
+			
+//			os = new FileOutputStream("semNome.html", false);
+//			osw = new OutputStreamWriter(os,Charset.forName("ISO-8859-15"));
+//			bw = new BufferedWriter(osw);
+//			bw.newLine();
+//			bw.write(html.geraHTMLSemNomes());
+			
 			bw.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Não foi possível encontrar o arquivo.");
