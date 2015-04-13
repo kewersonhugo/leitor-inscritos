@@ -7,7 +7,7 @@ public class BlusaPMasculina implements Blusa {
 	}
 	@Override
 	public String toString() {
-		return "P";
+		return "P-Masculina";
 	}
 
 	public static Integer getTotal() {
