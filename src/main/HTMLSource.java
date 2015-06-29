@@ -28,7 +28,7 @@ public class HTMLSource {
 	
 	public void gerarDados(Integer numero, String[] textoDoArquivoSeparado) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
 		this.textoDoArquivoSeparado = textoDoArquivoSeparado;
-		Class classe = Class.forName("main.Blusa"+textoDoArquivoSeparado[26].replace("\"", "").replace("-", ""));
+		Class classe = Class.forName("main.Blusa"+textoDoArquivoSeparado[26].replace("\"", "").replace("-", "").replace(" ", ""));
 		Object o = classe.newInstance();
 		Blusa blusa = (Blusa) o;
 		this.setarValores(numero, validaSePossuiNome(), blusa);
@@ -72,6 +72,7 @@ public class HTMLSource {
 		totalBlusas.append("Total M: ").append(BlusaMMasculina.getTotal()).append("<br>");
 		totalBlusas.append("Total G: ").append(BlusaGMasculina.getTotal()).append("<br>");
 		totalBlusas.append("Total GG: ").append(BlusaGGMasculina.getTotal()).append("<br>");
+		totalBlusas.append("Total Extra G: ").append(BlusaExtraG.getTotal()).append("<br>");
 		totalBlusas.append("<br>");
 		totalBlusas.append("Total Femininas:").append("<br>");
 		totalBlusas.append("Total P: ").append(BlusaPFeminina.getTotal()).append("<br>");
