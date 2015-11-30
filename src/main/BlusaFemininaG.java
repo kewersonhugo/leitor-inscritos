@@ -1,6 +1,6 @@
 package main;
 
-public class BlusaGFeminina implements Blusa {
+public class BlusaFemininaG implements Blusa {
 	private static Integer total = 0;
 	public void contaBlusas() {
 		total++;
@@ -11,7 +11,7 @@ public class BlusaGFeminina implements Blusa {
 	}
 	
 	public static Integer getTotal() {
-		return BlusaGFeminina.total;
+		return BlusaFemininaG.total;
 	}
 
 }

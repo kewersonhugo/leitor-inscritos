@@ -28,11 +28,12 @@ public class Leitor {
 			HTMLSource html = new HTMLSource();
 			textoDoArquivo = br.readLine();
 			//04,11,22
+			int posicaoBlusaNoArray = 20;
 			while (textoDoArquivo != null) {
-				String[] textoDoArquivoSeparado = textoDoArquivo.split(",");
-				String tamanho = textoDoArquivoSeparado[26].replace("\"", "");
+				String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
+				String tamanho = textoDoArquivoSeparado[posicaoBlusaNoArray];
 				if(tamanho != null && !tamanho.isEmpty()){
-					html.gerarDados(new Integer(cont), textoDoArquivoSeparado);
+					html.gerarDados(new Integer(cont), textoDoArquivoSeparado, posicaoBlusaNoArray);
 					cont++;
 				}
 				textoDoArquivo = br.readLine();
@@ -40,6 +41,7 @@ public class Leitor {
 
 			OutputStream os = new FileOutputStream("inscritos.html", false);
 			OutputStreamWriter osw = new OutputStreamWriter(os,Charset.forName("ISO-8859-15"));
+//			OutputStreamWriter osw = new OutputStreamWriter(os,Charset.forName("MacRoman"));
 			BufferedWriter bw = new BufferedWriter(osw);
 			bw.newLine();
 			bw.write(html.geraHTML());
@@ -55,10 +57,10 @@ public class Leitor {
 			
 			bw.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("N√£o foi poss√≠vel encontrar o arquivo.");
+			System.out.println("Não foi possível encontrar o arquivo.");
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			System.out.println("Encode n√£o suportado.");
+			System.out.println("Encode não suportado.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Ocorreu um erro ao tentar ler o arquivo.");

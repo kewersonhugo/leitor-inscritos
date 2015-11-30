@@ -1,18 +1,17 @@
 package main;
 
-public class BlusaMMasculina implements Blusa {
+public class BlusaMasculinaP implements Blusa {
 	private static Integer total = 0;
 	public void contaBlusas() {
 		total++;
 	}
 	@Override
 	public String toString() {
-		return "M-Masculina";
+		return "P-Masculina";
 	}
 
 	public static Integer getTotal() {
-		return BlusaMMasculina.total;
+		return BlusaMasculinaP.total;
 	}
 	
-
 }

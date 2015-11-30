@@ -23,12 +23,31 @@ public class HTMLSource {
 		stringsHTML.append("<td>").append(nome).append("</td>");
 		stringsHTML.append("<td>").append(blusa.toString()).append("</td>").append("</tr>");
 		blusa.contaBlusas();
-		blusasTotal++;
+		
+		if(!isSEMCamisa()){
+			blusasTotal++;			
+		}
 	}
 	
-	public void gerarDados(Integer numero, String[] textoDoArquivoSeparado) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+	private String validaSeTemCamisa(int posicaoArray){
+		String tamanhoCamisa="SEMBlusa";
+		if(!isSEMCamisa()){
+			return tamanhoCamisa = textoDoArquivoSeparado[posicaoArray];
+		}
+		return tamanhoCamisa;
+	}
+	
+	boolean isSEMCamisa(){
+		return this.textoDoArquivoSeparado[3].contains("SEM");
+	}
+	
+	public void gerarDados(Integer numero, String[] textoDoArquivoSeparado, int posicaoArray) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
 		this.textoDoArquivoSeparado = textoDoArquivoSeparado;
-		Class classe = Class.forName("main.Blusa"+textoDoArquivoSeparado[26].replace("\"", "").replace("-", "").replace(" ", ""));
+		Class classe = Class.forName("main.Blusa"+validaSeTemCamisa(posicaoArray)
+				.replace("\"", "")
+				.replace("-", "")
+				.replace(" ", "")
+				.replace("no", "na"));
 		Object o = classe.newInstance();
 		Blusa blusa = (Blusa) o;
 		this.setarValores(numero, validaSePossuiNome(), blusa);
@@ -36,10 +55,10 @@ public class HTMLSource {
 	
 	private String validaSePossuiNome(){
 		if(getNome().isEmpty()){
-			return getNomeDonoPayPal();
+			return getNomeDonoPayPal() + " - " + getEmail();
 		}
 		
-		return getNome();
+		return getNome() + " - " + getEmail();
 			
 	}
 	
@@ -53,7 +72,7 @@ public class HTMLSource {
 	}
 	
 	public String getNome(){
-		return this.textoDoArquivoSeparado[28].replace("\"", "");
+		return this.textoDoArquivoSeparado[0].replace("\"", "");
 	}
 	
 	public String getNomeDonoPayPal(){
@@ -61,24 +80,25 @@ public class HTMLSource {
 	}
 	
 	public String getEmail(){
-		return this.textoDoArquivoSeparado[13].replace("\"", "").toString();
+		return this.textoDoArquivoSeparado[12].replace("\"", "").toString();
 	}
 	
 	public String totalBlusas(){
 		totalBlusas.append("Total de Camisas: ").append(this.blusasTotal);
 		totalBlusas.append("<br>");
 		totalBlusas.append("Total Masculinas:").append("<br>");
-		totalBlusas.append("Total P: ").append(BlusaPMasculina.getTotal()).append("<br>");
-		totalBlusas.append("Total M: ").append(BlusaMMasculina.getTotal()).append("<br>");
-		totalBlusas.append("Total G: ").append(BlusaGMasculina.getTotal()).append("<br>");
-		totalBlusas.append("Total GG: ").append(BlusaGGMasculina.getTotal()).append("<br>");
-		totalBlusas.append("Total Extra G: ").append(BlusaExtraG.getTotal()).append("<br>");
+		totalBlusas.append("Total P: ").append(BlusaMasculinaP.getTotal()).append("<br>");
+		totalBlusas.append("Total M: ").append(BlusaMasculinaM.getTotal()).append("<br>");
+		totalBlusas.append("Total G: ").append(BlusaMasculinaG.getTotal()).append("<br>");
+		totalBlusas.append("Total GG: ").append(BlusaMasculinaGG.getTotal()).append("<br>");
+		totalBlusas.append("Total Extra G: ").append(BlusaMasculinaEXG.getTotal()).append("<br>");
 		totalBlusas.append("<br>");
 		totalBlusas.append("Total Femininas:").append("<br>");
-		totalBlusas.append("Total P: ").append(BlusaPFeminina.getTotal()).append("<br>");
-		totalBlusas.append("Total M: ").append(BlusaMFeminina.getTotal()).append("<br>");
-		totalBlusas.append("Total G: ").append(BlusaGFeminina.getTotal()).append("<br>");
-		totalBlusas.append("Total GG: ").append(BlusaGGFeminina.getTotal()).append("<br>");
+		totalBlusas.append("Total P: ").append(BlusaFemininaP.getTotal()).append("<br>");
+		totalBlusas.append("Total M: ").append(BlusaFemininaM.getTotal()).append("<br>");
+		totalBlusas.append("Total G: ").append(BlusaFemininaG.getTotal()).append("<br>");
+		totalBlusas.append("Total GG: ").append(BlusaFemininaGG.getTotal()).append("<br>");
+		totalBlusas.append("Total Inscritos SEM CAMISA: ").append(BlusaSEMBlusa.getTotal()).append("<br>");
 		return totalBlusas.toString();
 	}
 	
