@@ -1,4 +1,5 @@
 build/classes/
+build/classes/*.*
 build/classes/main/Inscrito.class
 build/classes/main/Leitor.class
 build/classes/main/*.class

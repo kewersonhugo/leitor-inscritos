@@ -15,29 +15,41 @@ import java.nio.charset.Charset;
 
 public class Leitor {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	private static final int POSICAO_BLUSA = 19;
+	private static HTMLSource html = new HTMLSource();
 
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		
 		BufferedReader br = null;
 
 		try {
-			InputStream is = new FileInputStream("inscritos.csv");
-			InputStreamReader isr = new InputStreamReader(is, Charset.forName("UTF-8"));
-			br = new BufferedReader(isr);
+			br = carregaArquivo();
 			String textoDoArquivo = br.readLine();
+			
 			int cont = 0;
-			HTMLSource html = new HTMLSource();
-			textoDoArquivo = br.readLine();
-			//04,11,22
-			int posicaoBlusaNoArray = 20;
+//			html = validaTextoBlusas(textoDoArquivo, cont, html, br);
 			while (textoDoArquivo != null) {
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
-				String tamanho = textoDoArquivoSeparado[posicaoBlusaNoArray];
-				if(tamanho != null && !tamanho.isEmpty()){
-					html.gerarDados(new Integer(cont), textoDoArquivoSeparado, posicaoBlusaNoArray);
-					cont++;
-				}
+				String tamanho = pegaTamanhoBlusaPelaPosicao(textoDoArquivoSeparado);
+				
+				cont = gerarDados(cont, html, textoDoArquivoSeparado, tamanho);
 				textoDoArquivo = br.readLine();
 			}
+//			while (textoDoArquivo != null) {
+//				String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
+//				String tamanho = "";
+//				System.out.println("leng: " + textoDoArquivoSeparado.length);
+//				if(textoDoArquivoSeparado.length == POSICAO_BLUSA){
+//					tamanho = "";
+//				}else{
+//					tamanho = textoDoArquivoSeparado[POSICAO_BLUSA];
+//				}
+//				if(tamanho != null && !tamanho.isEmpty()){
+//					html.gerarDados(new Integer(cont), textoDoArquivoSeparado, POSICAO_BLUSA);
+//					cont++;
+//				}
+//				textoDoArquivo = br.readLine();
+//			}
 
 			OutputStream os = new FileOutputStream("inscritos.html", false);
 			OutputStreamWriter osw = new OutputStreamWriter(os,Charset.forName("ISO-8859-15"));
@@ -57,10 +69,10 @@ public class Leitor {
 			
 			bw.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("N‹o foi poss’vel encontrar o arquivo.");
+			System.out.println("Nï¿½o foi possï¿½vel encontrar o arquivo.");
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			System.out.println("Encode n‹o suportado.");
+			System.out.println("Encode nï¿½o suportado.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Ocorreu um erro ao tentar ler o arquivo.");
@@ -73,4 +85,47 @@ public class Leitor {
 			}
 		}
 	}
+	
+	public static BufferedReader carregaArquivo() throws IOException{
+		BufferedReader br = null;
+		InputStream is = new FileInputStream("inscritos.csv");
+		InputStreamReader isr = new InputStreamReader(is, Charset.forName("UTF-8"));
+		br = new BufferedReader(isr);
+		return br;
+	}
+	
+	private static HTMLSource validaTextoBlusas(String textoDoArquivo, int cont, HTMLSource html, BufferedReader br) 
+				throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException{
+//		while (textoDoArquivo != null) {
+//			String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
+//			String tamanho = pegaTamanhoBlusaPelaPosicao(textoDoArquivoSeparado);
+//			
+//			cont = gerarDados(cont, html, textoDoArquivoSeparado, tamanho);
+//			textoDoArquivo = br.readLine();
+//		}
+		
+		return html;
+	}
+	
+	public static String pegaTamanhoBlusaPelaPosicao(String[] textoDoArquivoSeparado){
+		String tamanho = "";
+		
+		if(!textoDoArquivoSeparado[POSICAO_BLUSA].isEmpty()){
+			tamanho = textoDoArquivoSeparado[POSICAO_BLUSA];
+		}
+		
+		return tamanho;
+	}
+
+	private static int gerarDados(int cont, HTMLSource html, String[] textoDoArquivoSeparado, String tamanho)
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		if(tamanho != null && !tamanho.isEmpty()){
+			html.gerarDados(new Integer(cont), textoDoArquivoSeparado, POSICAO_BLUSA);
+			cont++;
+		}
+		return cont;
+	}
+	
+	
+	
 }
