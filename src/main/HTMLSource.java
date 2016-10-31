@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HTMLSource {
+	private static final String PACOTE_BLUSA = "main.Blusa";
 	private static final int COLUNA_EMAIL = 1;
 	private static final int COLUNA_DONO_PAY_PAL = 14;
 	private static final int COLUNA_NOME = 0;
@@ -58,7 +59,12 @@ public class HTMLSource {
 			texto = this.textoDoArquivoSeparado[posicaoArray].replace("no", "na");
 		}
 		
-		Class classe = Class.forName("main.Blusa"  + alteraCampoParaNomeClasse(texto));
+		carregarClasseBlusa(numero, texto);
+	}
+
+	public void carregarClasseBlusa(Integer numero, String texto)
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		Class classe = Class.forName(PACOTE_BLUSA  + alteraCampoParaNomeClasse(texto));
 		Object o = classe.newInstance();
 		Blusa blusa = (Blusa) o;
 		this.setarValores(numero, validaSePossuiNome(), blusa);
