@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 
 public class Leitor {
 
-	private static final int POSICAO_BLUSA = 19;
+	private static final int POSICAO_BLUSA = Configuracoes.POSICAO_BLUSA;
 	private static HTMLSource html = new HTMLSource();
 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -29,7 +29,7 @@ public class Leitor {
 			int cont = 0;
 //			html = validaTextoBlusas(textoDoArquivo, cont, html, br);
 			while (textoDoArquivo != null) {
-				String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
+				String[] textoDoArquivoSeparado = textoDoArquivo.split(Configuracoes.SPLIT);
 				String tamanho = pegaTamanhoBlusaPelaPosicao(textoDoArquivoSeparado);
 				
 				cont = gerarDados(cont, html, textoDoArquivoSeparado, tamanho);

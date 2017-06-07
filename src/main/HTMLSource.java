@@ -122,20 +122,35 @@ public class HTMLSource {
 	public String totalBlusas(){
 		totalBlusas.append("Total de Camisas: ").append(this.BLUSA_TOTAL);
 		totalBlusas.append("<br>");
-		totalBlusas.append("Total Masculinas:").append("<br>");
+		totalBlusas.append("Total Masculinas: ").append(totalMasculinas()).append("<br>");
 		totalBlusas.append("Total P: ").append(BlusaMasculinaP.getTotal()).append("<br>");
 		totalBlusas.append("Total M: ").append(BlusaMasculinaM.getTotal()).append("<br>");
 		totalBlusas.append("Total G: ").append(BlusaMasculinaG.getTotal()).append("<br>");
 		totalBlusas.append("Total GG: ").append(BlusaMasculinaGG.getTotal()).append("<br>");
 		totalBlusas.append("Total Extra G: ").append(BlusaMasculinaEXG.getTotal()).append("<br>");
 		totalBlusas.append("<br>");
-		totalBlusas.append("Total Femininas:").append("<br>");
+		totalBlusas.append("Total Femininas: ").append(totalFemininas()).append("<br>");
 		totalBlusas.append("Total P: ").append(BlusaFemininaP.getTotal()).append("<br>");
 		totalBlusas.append("Total M: ").append(BlusaFemininaM.getTotal()).append("<br>");
 		totalBlusas.append("Total G: ").append(BlusaFemininaG.getTotal()).append("<br>");
 		totalBlusas.append("Total GG: ").append(BlusaFemininaGG.getTotal()).append("<br>");
 		totalBlusas.append("Total Inscritos SEM CAMISA: ").append(BlusaSEMBlusa.getTotal()).append("<br>");
 		return totalBlusas.toString();
+	}
+	
+	private int totalMasculinas(){
+		return (BlusaMasculinaP.getTotal() + 
+		BlusaMasculinaM.getTotal() +
+		BlusaMasculinaG.getTotal() +
+		BlusaMasculinaGG.getTotal() +
+		BlusaMasculinaEXG.getTotal());
+	}
+	
+	private int totalFemininas(){
+		return (BlusaFemininaP.getTotal() + 
+				BlusaFemininaM.getTotal() +
+				BlusaFemininaG.getTotal() +
+				BlusaFemininaGG.getTotal());
 	}
 	
 	public List<String> getSemNomes(){
