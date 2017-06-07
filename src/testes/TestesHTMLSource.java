@@ -8,11 +8,12 @@ import org.junit.matchers.JUnitMatchers;
 
 import main.BlusaMasculinaG;
 import main.BlusaMasculinaM;
+import main.Configuracoes;
 import main.HTMLSource;
 
 public class TestesHTMLSource {
 
-	private static final String ABELARDO_VIEIRA_MOTA = "Abelardo Vieira Mota";
+	private static final String NOME_DO_PARTICIPANTE = "Rafael Mota Correia";
 	private static final String HTML_GERADO = "<meta http-equiv='Content-Type' content='text/html;charset=ISO-8859-1'><table><tr><td>Número</td><td>Nome</td><td>Blusa</td></tr><tr><td>1</td><td>Fulano</td><td>M-Masculina</td></tr></table>";
 	private static final String FEMININAM = "FemininaM";
 	private static final String MASCULINAG = "MasculinaG";
@@ -25,8 +26,8 @@ public class TestesHTMLSource {
 	private static final String M = "M";
 	private static final String MASCULINO_M = "Masculino-M";
 	private static final String MASCULINA_M = "Masculina-M";
-	private static String LINHA_TEXTO_CSV = "Abelardo Vieira Mota;abevieiramota@gmail.com;;JAVOU!#08 - Java Technology Day;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
-	private static String[] TEXTO_DO_ARQUIVO_SEPARADO = LINHA_TEXTO_CSV.split(";");
+	private static String LINHA_TEXTO_CSV = "629449905,2017-05-15 12:44:03-03:00,Rafael,Mota Correia,rafaelmcdono@gmail.com,1,JAVOU10 - COM CAMISA,788772647,,Eventbrite Completed,BRL,30.24,2.24,2.24,0.00,Attending,,,,,,,Masculina M,,,,,61620040,BR,Desenvolvendor,Resource IT Solutions";
+	private static String[] TEXTO_DO_ARQUIVO_SEPARADO = LINHA_TEXTO_CSV.split(Configuracoes.SPLIT);
 	private static String LINHA_TEXTO_CSV_SEM_BLUSA = "Abelardo Vieira Mota;abevieiramota@gmail.com;;JAVOU!#08 - SEM Blusa;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA = LINHA_TEXTO_CSV_SEM_BLUSA.split(";");
 	private static String LINHA_TEXTO_CSV_SEM_NOME = ";abevieiramota@gmail.com;;JAVOU!#08 - Java Technology Day;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
@@ -34,6 +35,7 @@ public class TestesHTMLSource {
 	private static final int POSICAO_BLUSA = 19;
 	private HTMLSource html = null;
 	private JUnitMatchers match = new JUnitMatchers();
+	
 	@Before
 	public void init(){
 		this.html = new HTMLSource();
@@ -130,7 +132,7 @@ public class TestesHTMLSource {
 	public void testaSePossuiNome(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		String nome = this.html.getNome();
-		Assert.assertEquals(ABELARDO_VIEIRA_MOTA, nome);
+		Assert.assertEquals(NOME_DO_PARTICIPANTE, nome);
 	}
 	
 	@Test
@@ -138,6 +140,13 @@ public class TestesHTMLSource {
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		String email = this.html.getEmail();
 		Assert.assertThat(email,CoreMatchers.containsString("@"));
+	}
+	
+	@Test
+	public void testaValidaSePossuiColunaNome(){
+		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
+		String validaSePossuiNome = this.html.validaSePossuiNome();
+		Assert.assertEquals("Abelardo Vieira Mota - abevieiramota@gmail.com", validaSePossuiNome);
 	}
 	
 	@Test
@@ -198,9 +207,9 @@ public class TestesHTMLSource {
 	@Test
 	public void testaSetarValoresETestaSeGerouComONomeEnviado(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
-		this.html.setarValores(1, ABELARDO_VIEIRA_MOTA, new BlusaMasculinaG());
+		this.html.setarValores(1, NOME_DO_PARTICIPANTE, new BlusaMasculinaG());
 		String htmlGerado = this.html.geraHTML();
-		Assert.assertThat(htmlGerado,CoreMatchers.containsString(ABELARDO_VIEIRA_MOTA));
+		Assert.assertThat(htmlGerado,CoreMatchers.containsString(NOME_DO_PARTICIPANTE));
 	}
 	
 	@Test

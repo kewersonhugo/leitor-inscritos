@@ -5,11 +5,12 @@ import java.util.List;
 
 public class HTMLSource {
 	private static final String PACOTE_BLUSA = "main.Blusa";
-	private static final int COLUNA_EMAIL = 1;
-	private static final int COLUNA_DONO_PAY_PAL = 14;
-	private static final int COLUNA_NOME = 0;
-	private static final int COLUNA_NOME_TICKET = 3;
-	private static final String TEXTO_CAMPO_SEM_BLUSA = "SEM";
+	private static final int COLUNA_EMAIL = Configuracoes.COLUNA_EMAIL;
+	private static final int COLUNA_DONO_PAY_PAL =  Configuracoes.COLUNA_DONO_PAY_PAL;
+	private static final int COLUNA_NOME =  Configuracoes.COLUNA_NOME;
+	private static final int COLUNA_SOBRE_NOME =  Configuracoes.COLUNA_SOBRE_NOME;
+	private static final int COLUNA_NOME_TICKET =  Configuracoes.COLUNA_NOME_TICKET;
+	private static final String TEXTO_CAMPO_SEM_BLUSA =  Configuracoes.TEXTO_CAMPO_SEM_BLUSA;
 	private StringBuilder stringsHTML = new StringBuilder();
 	private StringBuilder totalBlusas = new StringBuilder();
 	private Integer BLUSA_TOTAL = 0;
@@ -108,7 +109,7 @@ public class HTMLSource {
 	}
 	
 	public String getNome(){
-		return this.textoDoArquivoSeparado[COLUNA_NOME].replace("\"", "");
+		return this.textoDoArquivoSeparado[COLUNA_NOME].replace("\"", "").concat(" ") + this.textoDoArquivoSeparado[COLUNA_SOBRE_NOME].replace("\"", "");
 	}
 	
 	public String getNomeDonoPayPal(){

@@ -12,8 +12,10 @@ import main.Configuracoes;
 import main.HTMLSource;
 import main.Leitor;
 
-public class TestaPosicaoCampoBlusa {
+public class TestaColunasDados {
 
+	private static final String NOME_DO_PARTICIPANTE = "Rafael Mota Correia";
+	private static final String EMAIL_DO_PARTICIPANTE = "rafaelmcdono@gmail.com";
 	private static String LINHA_TEXTO_CSV = "629449905,2017-05-15 12:44:03-03:00,Rafael,Mota Correia,rafaelmcdono@gmail.com,1,JAVOU10 - COM CAMISA,788772647,,Eventbrite Completed,BRL,30.24,2.24,2.24,0.00,Attending,,,,,,,Masculina M,,,,,61620040,BR,Desenvolvendor,Resource IT Solutions";
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO = LINHA_TEXTO_CSV.split(Configuracoes.SPLIT);
 	private static String LINHA_TEXTO_CSV_SEM_BLUSA = "Alan Gomes Silveira;alanomega@hotmail.com;;Casos de Sucesso - Com Blusa;200.300.907.1160;98277;30.80;30.8;;0;21/02/2017 23:22;ffbjavou09;22.55;(85) 98895-9581;alanomega@hotmail.com;(85)0000-0000;08/02/1994;FFB;Ensino médio;Estudante;Masculino;M";
@@ -46,5 +48,16 @@ public class TestaPosicaoCampoBlusa {
 		Assert.assertEquals("", MASCULINA_M, pegaTamanhoBlusaPelaPosicao);
 	}
 	
+	@Test
+	public void testaColunaNome(){
+		String nomeParticipanteCompleto =  TEXTO_DO_ARQUIVO_SEPARADO[Configuracoes.COLUNA_NOME].replace("\"", "").concat(" ") + TEXTO_DO_ARQUIVO_SEPARADO[Configuracoes.COLUNA_SOBRE_NOME].replace("\"", "");
+		Assert.assertEquals("", NOME_DO_PARTICIPANTE, nomeParticipanteCompleto);
+	}
+	
+	@Test
+	public void testaColunaEmail(){
+		String EMAILParticipanteCompleto =  TEXTO_DO_ARQUIVO_SEPARADO[Configuracoes.COLUNA_EMAIL].replace("\"", "");
+		Assert.assertEquals("", EMAIL_DO_PARTICIPANTE, EMAILParticipanteCompleto);
+	}
 	
 }
