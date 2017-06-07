@@ -27,7 +27,6 @@ public class Leitor {
 			String textoDoArquivo = br.readLine();
 			
 			int cont = 0;
-//			html = validaTextoBlusas(textoDoArquivo, cont, html, br);
 			while (textoDoArquivo != null) {
 				String[] textoDoArquivoSeparado = textoDoArquivo.split(Configuracoes.SPLIT);
 				String tamanho = pegaTamanhoBlusaPelaPosicao(textoDoArquivoSeparado);
@@ -35,37 +34,15 @@ public class Leitor {
 				cont = gerarDados(cont, html, textoDoArquivoSeparado, tamanho);
 				textoDoArquivo = br.readLine();
 			}
-//			while (textoDoArquivo != null) {
-//				String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
-//				String tamanho = "";
-//				System.out.println("leng: " + textoDoArquivoSeparado.length);
-//				if(textoDoArquivoSeparado.length == POSICAO_BLUSA){
-//					tamanho = "";
-//				}else{
-//					tamanho = textoDoArquivoSeparado[POSICAO_BLUSA];
-//				}
-//				if(tamanho != null && !tamanho.isEmpty()){
-//					html.gerarDados(new Integer(cont), textoDoArquivoSeparado, POSICAO_BLUSA);
-//					cont++;
-//				}
-//				textoDoArquivo = br.readLine();
-//			}
 
 			OutputStream os = new FileOutputStream("inscritos.html", false);
 			OutputStreamWriter osw = new OutputStreamWriter(os,Charset.forName("ISO-8859-15"));
-//			OutputStreamWriter osw = new OutputStreamWriter(os,Charset.forName("MacRoman"));
 			BufferedWriter bw = new BufferedWriter(osw);
 			bw.newLine();
 			bw.write(html.geraHTML());
 			bw.write(html.totalBlusas());
 			
 			System.out.println(html.totalBlusas());
-			
-//			os = new FileOutputStream("semNome.html", false);
-//			osw = new OutputStreamWriter(os,Charset.forName("ISO-8859-15"));
-//			bw = new BufferedWriter(osw);
-//			bw.newLine();
-//			bw.write(html.geraHTMLSemNomes());
 			
 			bw.close();
 		} catch (FileNotFoundException e) {
@@ -92,19 +69,6 @@ public class Leitor {
 		InputStreamReader isr = new InputStreamReader(is, Charset.forName("UTF-8"));
 		br = new BufferedReader(isr);
 		return br;
-	}
-	
-	private static HTMLSource validaTextoBlusas(String textoDoArquivo, int cont, HTMLSource html, BufferedReader br) 
-				throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException{
-//		while (textoDoArquivo != null) {
-//			String[] textoDoArquivoSeparado = textoDoArquivo.split(";");
-//			String tamanho = pegaTamanhoBlusaPelaPosicao(textoDoArquivoSeparado);
-//			
-//			cont = gerarDados(cont, html, textoDoArquivoSeparado, tamanho);
-//			textoDoArquivo = br.readLine();
-//		}
-		
-		return html;
 	}
 	
 	public static String pegaTamanhoBlusaPelaPosicao(String[] textoDoArquivoSeparado){
