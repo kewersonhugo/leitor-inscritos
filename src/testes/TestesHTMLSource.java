@@ -13,6 +13,8 @@ import main.HTMLSource;
 
 public class TestesHTMLSource {
 
+	private static final String MASCULINA_M2 = "Masculina M";
+	private static final String NOME_PARTICIPANTE_COM_EMAIL = "Rafael Mota Correia - rafaelmcdono@gmail.com";
 	private static final String NOME_DO_PARTICIPANTE = "Rafael Mota Correia";
 	private static final String HTML_GERADO = "<meta http-equiv='Content-Type' content='text/html;charset=ISO-8859-1'><table><tr><td>Número</td><td>Nome</td><td>Blusa</td></tr><tr><td>1</td><td>Fulano</td><td>M-Masculina</td></tr></table>";
 	private static final String FEMININAM = "FemininaM";
@@ -32,7 +34,7 @@ public class TestesHTMLSource {
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA = LINHA_TEXTO_CSV_SEM_BLUSA.split(";");
 	private static String LINHA_TEXTO_CSV_SEM_NOME = ";abevieiramota@gmail.com;;JAVOU!#08 - Java Technology Day;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_NOME = LINHA_TEXTO_CSV_SEM_NOME.split(";");
-	private static final int POSICAO_BLUSA = 19;
+	private static final int POSICAO_BLUSA = Configuracoes.POSICAO_BLUSA;
 	private HTMLSource html = null;
 	private JUnitMatchers match = new JUnitMatchers();
 	
@@ -45,7 +47,7 @@ public class TestesHTMLSource {
 	public void testaValidaSeTemCamisa(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		String validaSeTemCamisa = this.html.validaSeTemCamisa(POSICAO_BLUSA);
-		Assert.assertEquals("", M, validaSeTemCamisa);
+		Assert.assertEquals("", MASCULINA_M2, validaSeTemCamisa);
 		
 	}
 	
@@ -146,14 +148,14 @@ public class TestesHTMLSource {
 	public void testaValidaSePossuiColunaNome(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		String validaSePossuiNome = this.html.validaSePossuiNome();
-		Assert.assertEquals("Abelardo Vieira Mota - abevieiramota@gmail.com", validaSePossuiNome);
+		Assert.assertEquals(NOME_PARTICIPANTE_COM_EMAIL, validaSePossuiNome);
 	}
 	
 	@Test
 	public void testaValidaSePossuiNomes(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		String validaSePossuiNome = this.html.validaSePossuiNome();
-		Assert.assertEquals("Abelardo Vieira Mota - abevieiramota@gmail.com", validaSePossuiNome);
+		Assert.assertEquals(NOME_PARTICIPANTE_COM_EMAIL, validaSePossuiNome);
 	}
 	
 	@Test
