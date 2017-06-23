@@ -12,4 +12,5 @@ public abstract class Configuracoes {
 	public static final int COLUNA_NOME = 2;
 	public static final int COLUNA_SOBRE_NOME = 3;
 	public static final int COLUNA_NOME_TICKET = 6;
+	public static final String NOME_CLASSE_SEM_BLUSA = "SEMBlusa";
 }

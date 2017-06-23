@@ -20,7 +20,7 @@ public class TestesHTMLSource {
 	private static final String FEMININAM = "FemininaM";
 	private static final String MASCULINAG = "MasculinaG";
 	private static final String MASCULINAM = "MasculinaM";
-	private static final String SEM_BLUSA = "SEMBlusa";
+	private static final String SEM_BLUSA = Configuracoes.TEXTO_CAMPO_SEM_BLUSA;
 	private static final String G = "G";
 	private static final String MASCULINA_G = "Masculina G";
 	private static final String FEMININA_M = "Feminina M";
@@ -34,6 +34,8 @@ public class TestesHTMLSource {
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA = LINHA_TEXTO_CSV_SEM_BLUSA.split(Configuracoes.SPLIT);
 	private static String LINHA_TEXTO_CSV_SEM_NOME = ";abevieiramota@gmail.com;;JAVOU!#08 - Java Technology Day;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_NOME = LINHA_TEXTO_CSV_SEM_NOME.split(Configuracoes.SPLIT);
+	private static String LINHA_TEXTO_CSV_FEMININO = "639866746,2017-06-15 00:24:22-03:00,Vivian,Menezes,vivianmenezes130@gmail.com,1,JAVOU10 - SEM CAMISA,801375339,,Eventbrite Completed,BRL,30.24,2.24,2.24,0.00,Attending,,,,,,,Feminina M,Oito de Setembro,1135, apto 302,Fortaleza,CE,60175-210,BR,,";
+	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_FEMININO = LINHA_TEXTO_CSV_FEMININO.split(Configuracoes.SPLIT);
 	private static final int POSICAO_BLUSA = Configuracoes.POSICAO_BLUSA;
 	private HTMLSource html = null;
 	private JUnitMatchers match = new JUnitMatchers();
@@ -55,7 +57,7 @@ public class TestesHTMLSource {
 	public void testaValidaSeTemCamisaSEMCamisa(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA);
 		String validaSeTemCamisa = this.html.validaSeTemCamisa(POSICAO_BLUSA);
-		Assert.assertEquals("", SEM_BLUSA, validaSeTemCamisa);
+		Assert.assertEquals("", Configuracoes.NOME_CLASSE_SEM_BLUSA, validaSeTemCamisa);
 	}
 	
 	@Test
@@ -74,24 +76,38 @@ public class TestesHTMLSource {
 	}
 	
 	@Test
+	public void testaSeEhFeminino(){
+		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO_FEMININO);
+		boolean ehFeminino = this.html.isFeminino();
+		Assert.assertTrue(ehFeminino);
+	}
+	
+	@Test
+	public void testaSeNaoEhFeminino(){
+		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
+		boolean ehFeminino = this.html.isFeminino();
+		Assert.assertFalse(ehFeminino);
+	}
+	
+	@Test
 	public void testaSemCamisaComColunaTamanhoVazia(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA);
 		String alteraCampoParaNomeClasse = this.html.alteraCampoParaNomeClasse("");
-		Assert.assertEquals("", SEM_BLUSA, alteraCampoParaNomeClasse);
+		Assert.assertEquals("", Configuracoes.NOME_CLASSE_SEM_BLUSA, alteraCampoParaNomeClasse);
 	}
 	
 	@Test
 	public void testaSemCamisaComColunaTamanhoNull(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA);
 		String alteraCampoParaNomeClasse = this.html.alteraCampoParaNomeClasse(null);
-		Assert.assertEquals("", SEM_BLUSA, alteraCampoParaNomeClasse);
+		Assert.assertEquals("", Configuracoes.NOME_CLASSE_SEM_BLUSA, alteraCampoParaNomeClasse);
 	}
 	
 	@Test
 	public void testaComCamisaComColunaTamanhoNull(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		String alteraCampoParaNomeClasse = this.html.alteraCampoParaNomeClasse(null);
-		Assert.assertEquals("", SEM_BLUSA, alteraCampoParaNomeClasse);
+		Assert.assertEquals("", Configuracoes.NOME_CLASSE_SEM_BLUSA, alteraCampoParaNomeClasse);
 	}
 	
 	@Test

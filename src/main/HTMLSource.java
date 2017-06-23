@@ -29,17 +29,25 @@ public class HTMLSource {
 	public void setarValores(Integer numero, String nome, Blusa blusa){
 		stringsHTML.append("<tr>")
 		.append("<td>").append(numero).append("</td>");
-		stringsHTML.append("<td>").append(nome).append("</td>");
+		stringsHTML.append("<td>");
+		if(isFeminino()){
+			stringsHTML.append("<font color='#FF00FF'><strong>").append(nome).append("</strong></font>").append("</td>");
+		}else {
+			stringsHTML.append(nome).append("</td>");
+		}
+		
 		stringsHTML.append("<td>").append(blusa.toString()).append("</td>").append("</tr>");
 		blusa.contaBlusas();
 		
 		if(!isSEMCamisa()){
-			BLUSA_TOTAL++;			
+			BLUSA_TOTAL++;
 		}
 	}
 	
+//	.append("<font color='#FF00FF'><strong>").append(nome).append("</strong></font>").append("</td>");
+	
 	public String validaSeTemCamisa(int posicaoArray){
-		String tamanhoCamisa="SEMBlusa";
+		String tamanhoCamisa= Configuracoes.NOME_CLASSE_SEM_BLUSA;
 		if(!isSEMCamisa()){
 			return tamanhoCamisa = textoDoArquivoSeparado[posicaoArray];
 		}
@@ -50,11 +58,15 @@ public class HTMLSource {
 		return this.textoDoArquivoSeparado[COLUNA_NOME_TICKET].contains(TEXTO_CAMPO_SEM_BLUSA);
 	}
 	
+	public boolean isFeminino(){
+		return this.textoDoArquivoSeparado[Configuracoes.POSICAO_BLUSA].contains("Femini");
+	}
+	
 	public void gerarDados(Integer numero, String[] textoDoArquivoSeparado, int posicaoArray) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
 		this.textoDoArquivoSeparado = textoDoArquivoSeparado;
 		String texto = "";
 		String nome = validaSeTemCamisa(posicaoArray);
-		if(regexNome(nome).equals("SEMBlusa")){
+		if(regexNome(nome).equals(Configuracoes.NOME_CLASSE_SEM_BLUSA)){
 			texto = "";
 		}else{
 			texto = this.textoDoArquivoSeparado[posicaoArray].replace("no", "na");
@@ -81,7 +93,7 @@ public class HTMLSource {
 	public String alteraCampoParaNomeClasse(String nomeDoCampo){
 		String nome = "";
 		if(nomeDoCampo == null || nomeDoCampo.isEmpty())
-				return "SEMBlusa";
+				return Configuracoes.NOME_CLASSE_SEM_BLUSA;
 		
 		if(nomeDoCampo.contains("Baby")){
 			nome = regexNome(nomeDoCampo).replace("Babylook", "Feminina");
