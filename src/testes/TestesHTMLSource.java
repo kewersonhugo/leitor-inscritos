@@ -30,10 +30,10 @@ public class TestesHTMLSource {
 	private static final String MASCULINA_M = "Masculina-M";
 	private static String LINHA_TEXTO_CSV = "629449905,2017-05-15 12:44:03-03:00,Rafael,Mota Correia,rafaelmcdono@gmail.com,1,JAVOU10 - COM CAMISA,788772647,,Eventbrite Completed,BRL,30.24,2.24,2.24,0.00,Attending,,,,,,,Masculina M,,,,,61620040,BR,Desenvolvendor,Resource IT Solutions";
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO = LINHA_TEXTO_CSV.split(Configuracoes.SPLIT);
-	private static String LINHA_TEXTO_CSV_SEM_BLUSA = "Abelardo Vieira Mota;abevieiramota@gmail.com;;JAVOU!#08 - SEM Blusa;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
-	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA = LINHA_TEXTO_CSV_SEM_BLUSA.split(";");
+	private static String LINHA_TEXTO_CSV_SEM_BLUSA = "639027067,2017-06-12 19:42:54-03:00,João,Batista Araujo Neto,joao.1309@gmail.com,1,JAVOU10 - SEM CAMISA,800366792,,Eventbrite Completed,BRL,30.24,2.24,2.24,0.00,Attending,,,,,,,Masculina EXG,Rua Dom Xisto Albano, 410,casa,Fortaleza,CE,60730165,BR,Aluno,Estácio";
+	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_BLUSA = LINHA_TEXTO_CSV_SEM_BLUSA.split(Configuracoes.SPLIT);
 	private static String LINHA_TEXTO_CSV_SEM_NOME = ";abevieiramota@gmail.com;;JAVOU!#08 - Java Technology Day;200.300.201.6635;82507;30.00;30;;0;05/10/2016 19:20;;27.27;(85) 98796-2501;abevieiramota@gmail.com;UFC;Analista de TI;Masculino;Google groups JavaCE;M;Gradua��o";
-	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_NOME = LINHA_TEXTO_CSV_SEM_NOME.split(";");
+	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_SEM_NOME = LINHA_TEXTO_CSV_SEM_NOME.split(Configuracoes.SPLIT);
 	private static final int POSICAO_BLUSA = Configuracoes.POSICAO_BLUSA;
 	private HTMLSource html = null;
 	private JUnitMatchers match = new JUnitMatchers();
