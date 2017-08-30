@@ -218,7 +218,7 @@ public class TestesHTMLSource {
 	public void testaSetarValores(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		this.html.setarValores(1, "Fulano", new BlusaMasculinaM());
-		String htmlGerado = this.html.geraHTML();
+		String htmlGerado = this.html.gerarListaInscritos();
 		Assert.assertEquals(HTML_GERADO, htmlGerado);
 	}
 	
@@ -226,7 +226,7 @@ public class TestesHTMLSource {
 	public void testaSetarValoresETestaSeGerouComONomeEnviado(){
 		this.html.setTextoDoArquivoSeparado(TEXTO_DO_ARQUIVO_SEPARADO);
 		this.html.setarValores(1, NOME_DO_PARTICIPANTE, new BlusaMasculinaG());
-		String htmlGerado = this.html.geraHTML();
+		String htmlGerado = this.html.gerarListaInscritos();
 		Assert.assertThat(htmlGerado,CoreMatchers.containsString(NOME_DO_PARTICIPANTE));
 	}
 	

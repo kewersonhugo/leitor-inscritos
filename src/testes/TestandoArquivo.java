@@ -29,7 +29,7 @@ public class TestandoArquivo {
 
 	@Before
 	public void init() throws IOException{
-		BR = Leitor.carregaArquivo();
+		BR = Leitor.carregaArquivoCsv("inscritos.csv");
 		LINHA_TEXTO_CSV = BR.readLine();
 		TEXTO_DO_ARQUIVO_SEPARADO = LINHA_TEXTO_CSV.split(Configuracoes.SPLIT);
 		this.html = new HTMLSource();
