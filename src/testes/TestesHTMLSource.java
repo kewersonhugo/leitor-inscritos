@@ -1,15 +1,15 @@
 package testes;
 
+import main.BlusaMasculinaG;
+import main.BlusaMasculinaM;
+import main.Configuracoes;
+import main.HTMLSource;
+
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.matchers.JUnitMatchers;
-
-import main.BlusaMasculinaG;
-import main.BlusaMasculinaM;
-import main.Configuracoes;
-import main.HTMLSource;
 
 public class TestesHTMLSource {
 

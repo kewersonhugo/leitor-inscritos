@@ -13,5 +13,4 @@ public class BlusaFemininaG implements Blusa {
 	public static Integer getTotal() {
 		return BlusaFemininaG.total;
 	}
-
 }

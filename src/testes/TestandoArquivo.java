@@ -28,7 +28,7 @@ public class TestandoArquivo {
 	private HTMLSource html = null;
 
 	@Before
-	public void init() throws IOException{
+	public void init() throws IOException, InterruptedException{
 		BR = Leitor.carregaArquivoCsv("inscritos.csv");
 		LINHA_TEXTO_CSV = BR.readLine();
 		TEXTO_DO_ARQUIVO_SEPARADO = LINHA_TEXTO_CSV.split(Configuracoes.SPLIT);
@@ -104,7 +104,5 @@ public class TestandoArquivo {
 	public void testaAlterarNomeTamanhoFemininaBabyLookM(){
 		String alteraCampoParaNomeClasse = this.html.alteraCampoParaNomeClasse("Babylook M");
 		Assert.assertEquals("", CLASSE_FEMININA_M, alteraCampoParaNomeClasse);
-	}
-	
-		
+	}		
 }
