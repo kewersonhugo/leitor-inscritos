@@ -17,11 +17,11 @@ public class Leitor {
 
 	private static final int POSICAO_BLUSA = Configuracoes.POSICAO_BLUSA;
 
-	public static void gerarArquivoHtmlFromCsv()
+	public void gerarArquivoHtmlFromCsv(String nomeArquivoCsv)
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		BufferedReader br = null;
 		try {
-			br = carregaArquivoCsv("inscritos.csv");
+			br = carregaArquivoCsv(nomeArquivoCsv);
 			HTMLSource html = new HTMLSource();
 			parseArquivoCsv(br, html);
 			gerarArquivoHtml(html);

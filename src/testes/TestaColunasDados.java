@@ -1,16 +1,10 @@
 package testes;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import main.Configuracoes;
+import main.Leitor;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
-
-import main.Configuracoes;
-import main.HTMLSource;
-import main.Leitor;
 
 public class TestaColunasDados {
 
@@ -24,8 +18,6 @@ public class TestaColunasDados {
 	private static String[] TEXTO_DO_ARQUIVO_SEPARADO_FEMININA = LINHA_TEXTO_CSV_FEMININA.split(",");
 	private static final String MASCULINA_M = Configuracoes.BLUSA_MASCULINA_M_NOMENCLATURA;
 	private static final String FEMININA_M = Configuracoes.BLUSA_FEMININA_M_NOMENCLATURA;
-
-
 
 	@Test
 	public void testaColunaTamanhoDaBlusa(){
